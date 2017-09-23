@@ -1,0 +1,90 @@
+<html>
+
+<head>
+
+<style>
+body{
+	background-color:#d1d1d1;
+	padding:10px;
+	font-size:30px;
+	font-family: sans;
+}
+
+#wrapper{
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+
+}
+
+
+input[type=text]{
+	font-size:inherit;
+	padding:10px;
+	border-radius: 10px 0px 0px 10px;
+	border-style:solid;
+	border-color:#757575;
+	border-width: 2px 0px 2px 2px;
+	color:#828282;
+	width:60%;
+}
+
+button{
+	font-size:inherit;
+	padding:10px;
+	border-radius: 0px 10px 10px 0px;
+	color:#ffffff;
+	background-color:#bfbfbf;
+	border-style:solid;
+	border-color:#757575;
+	border-width:2px;
+	transition: background-color 0.5s;
+}
+
+button:hover{
+	background-color:#898989;
+	
+}
+
+a:link{
+	color:#515151;
+}
+
+a:visited{
+	color:#7f7f7f;
+}
+</style>
+
+<script>
+function handleKeypress(e){
+	if(e.which == 13){
+		submit();
+	}
+}
+
+function submit(){
+    var xhr = new XMLHttpRequest();
+    xhr.open( "GET", "http://localhost/?link="+document.getElementById("textinput").value, true);
+	xhr.onload = ()=>{
+		document.getElementById("response").setAttribute("href", xhr.responseText);
+		document.getElementById("response").text = "Continue"
+	}
+    xhr.send( null );
+	console.log(xhr.responseText);
+    return xhr.responseText;
+}
+
+</script>
+</head>
+
+<div id="wrapper">
+<input id="textinput" type="text" name="link" onkeydown="handleKeypress(event)" placeholder="Paste a packet link here"><button onclick="submit()">Submit</button>
+<br>
+<br>
+<a id="response" href="" target="_blank"></a>
+</div> 
+
+<body>
+
+</body>
+</html>
